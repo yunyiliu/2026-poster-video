@@ -19,11 +19,27 @@ skill to narrate and assemble.
 ## Workflow
 
 1. Scaffold a `video-workspace/` with `init_video_project.py`.
-2. Drop your slide images into `video-workspace/slides/` named in order
-   (`01-title.png`, `02-problem.png`, ...).
+2. Get slide images into `video-workspace/slides/` by either:
+   - dropping in your own PNG/JPG files named in order
+     (`01-title.png`, `02-problem.png`, ...), or
+   - running `import_deck.py --input deck.pptx --slides-dir slides/`
+     to auto-convert a `.pptx`, `.key`, or `.pdf` into per-page PNGs.
 3. Fill or generate `script.md` — one `## NN` section per slide.
 4. Run `synthesize_voice.py` to convert each script section to audio.
 5. Run `render_video.py` to assemble `output/poster_video.mp4`.
+
+### Deck input formats
+
+`import_deck.py` accepts:
+
+- `.pptx` — converted via LibreOffice (`brew install --cask libreoffice`)
+  or macOS Keynote (free, preinstalled).
+- `.key` — converted via Keynote.
+- `.pdf` — rasterized page-by-page; works for slide-deck PDFs as-is,
+  and for paper PDFs if you want a "scrolling through the paper" video.
+
+Each input page becomes one slide image named `01.png`, `02.png`, ...
+in the workspace's `slides/` folder.
 
 ## Requirements
 

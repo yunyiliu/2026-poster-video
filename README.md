@@ -41,7 +41,15 @@ The agent will:
 
 - Run `init_video_project.py` to create the workspace skeleton
 - Help you write `script.md` (one `## NN` section per slide)
-- Tell you to drop slide PNGs into `slides/`
+- Drop slide PNGs into `slides/`. You can either:
+  - Hand it your own PNGs/JPGs, or
+  - Hand it a `.pptx`, `.key`, or `.pdf` file — the skill auto-converts
+    via LibreOffice / Keynote / pdftoppm into one PNG per page.
+
+Paper PDFs work as input too — the agent can read the text from the
+LaTeX source or the PDF to write the script, while either rasterizing
+the paper pages as slide visuals or pointing at separately rendered
+slide images.
 
 ### 3. Synthesize voice
 
@@ -68,6 +76,9 @@ Output lands at `video-workspace/output/poster_video.mp4`.
 
 - Python 3
 - ffmpeg (`brew install ffmpeg`)
+- For PPTX/PDF deck import: poppler (`brew install poppler`) — gives
+  `pdftoppm`. For PPTX specifically you also need LibreOffice
+  (`brew install --cask libreoffice`) or macOS Keynote.
 - For higher-quality voice: `OPENAI_API_KEY` (set in your shell)
 
 ---
