@@ -21,21 +21,55 @@ mkdir -p ~/.claude/skills
 ln -s "$(pwd)/2026-poster-video/poster-video" ~/.claude/skills/poster-video
 ```
 
-Install ffmpeg (one time):
+Install the runtime dependencies (one time):
 
 ```bash
-brew install ffmpeg
+brew install ffmpeg poppler              # video assembly + PDF rasterizer
+brew install --cask libreoffice           # PPTX/Keynote -> PDF converter
 ```
+
+`ffmpeg` is required. `poppler` is needed if you want the skill to
+auto-import a `.pptx`, `.key`, or `.pdf` deck. `libreoffice` is the
+most reliable `.pptx` converter; on macOS you can skip it if Keynote
+opens your file cleanly.
 
 Start a new Claude Code session. The skill appears as `poster-video`
 in the available-skills list.
 
 ### 2. Ask the agent
 
+Pick the prompt that matches what you have on disk:
+
+**You have a `.pptx` and a paper LaTeX file:**
+
 > Use `$poster-video` to scaffold a video workspace at
-> `~/Desktop/my-poster-video/`. I'll drop my slide images into
-> `slides/`. Then write a 6-slide, 5-minute CVPR oral script based on
-> my paper draft at `~/papers/foo/main.tex`.
+> `~/Desktop/my-poster-video/`. Import the deck at
+> `/path/to/deck.pptx` via `import_deck.py`. Then read
+> `/path/to/paper/main.tex` and write a 6-slide, 5-minute CVPR
+> oral script (one `## NN` section per slide). Synthesize voice
+> with macOS `say`, then render the final MP4.
+
+**You only have a slide-deck PDF:**
+
+> Use `$poster-video` to scaffold a video workspace at
+> `~/Desktop/my-poster-video/`. Import the deck at
+> `/path/to/deck.pdf` via `import_deck.py`. Then read my paper at
+> `/path/to/paper/main.tex` and write a 5-minute, 6-slide CVPR oral
+> script. Use OpenAI TTS with voice `alloy`, then render the MP4.
+
+**You already have slide images:**
+
+> Use `$poster-video` to scaffold a video workspace at
+> `~/Desktop/my-poster-video/`. Copy the slide PNGs from
+> `~/Desktop/exported-slides/` into the workspace's `slides/`
+> folder. Then write a 6-slide, 5-minute CVPR oral script based on
+> the paper at `/path/to/paper/main.tex` and render the MP4.
+
+**Re-render only (you tweaked `script.md`):**
+
+> Use `$poster-video` to re-synthesize voice and re-render the
+> video in `~/Desktop/my-poster-video/` using OpenAI TTS voice
+> `nova` at 1.05x speed, with 400ms crossfades between slides.
 
 The agent will:
 
