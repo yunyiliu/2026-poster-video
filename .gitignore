@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+.video-tmp/
+video-workspace/
+*.mp4
+*.mov
+*.aiff
+*.wav
+*.mp3
+!poster-video/assets/examples/**
