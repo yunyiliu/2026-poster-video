@@ -33,7 +33,7 @@ in the available-skills list.
 ### 2. Ask the agent
 
 > Use `$poster-video` to scaffold a video workspace at
-> `~/Desktop/sat-rrg-video/`. I'll drop my slide images into
+> `~/Desktop/my-poster-video/`. I'll drop my slide images into
 > `slides/`. Then write a 6-slide, 5-minute CVPR oral script based on
 > my paper draft at `~/papers/foo/main.tex`.
 

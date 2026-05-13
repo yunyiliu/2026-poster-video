@@ -34,7 +34,7 @@ skill to narrate and assemble.
 
 ## Typical prompts
 
-- `Use $poster-video to turn the slides in ~/Desktop/sat-rrg-slides into
+- `Use $poster-video to turn the slides in ~/Desktop/my-slides into
    a 5-minute CVPR oral video.`
 - `Use $poster-video to draft a per-slide narration for these images,
    matching a confident-but-clear CVPR-oral tone.`
@@ -64,9 +64,9 @@ match the image filename prefix:
 ```markdown
 ## 01
 
-Welcome to our CVPR 2026 talk on SAT-RRG. Today we ask: how can a
-radiology report model push down the tokens it just got wrong, rather
-than only pulling the ground-truth token up?
+Welcome to our CVPR 2026 talk on Your Paper Title. Today we ask the
+question that motivates this work, in one sentence the audience can
+remember.
 
 ## 02
 
